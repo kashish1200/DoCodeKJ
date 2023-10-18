@@ -1,0 +1,52 @@
+
+class Solution {
+    public int[] matrixDiagonally(int[][] mat) {
+         if(mat.length == 0 || mat[0].length == 0) return new int[0];
+
+       int m = mat.length;
+       int n = mat[0].length;
+       int []arr = new int[m*n]; // made an empty array to return the ans.
+       
+       int i = 0 ;
+       int rows = 0 ;
+       int cols = 0 ;
+       boolean up = true; // as there are 2 directions one up other down
+       
+       while(rows<m && cols<n){
+           //if diagonal is going upwards
+           if(up){
+               while(rows>0 && cols<n-1){
+                   arr[i++] = mat[rows][cols];
+                   rows--;
+                   cols++;
+               }
+           arr[i++]=mat[rows][cols];
+           if(cols == n-1){
+               rows++;
+           }
+           else{
+               cols++;
+           }
+           }
+           else{
+               //if going down
+               while(cols>0 && rows<m-1){
+                   arr[i++] = mat[rows][cols];
+                   rows++;
+                   cols--;
+               }
+               arr[i++] = mat[rows][cols];
+               if(rows == m-1){
+                   cols++;
+               }
+               else{
+                   rows++;
+               }
+           }
+           up=!up;
+       }
+       return arr;
+       
+    }   
+        
+}
