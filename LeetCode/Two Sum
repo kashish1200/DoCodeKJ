@@ -1,0 +1,20 @@
+T.C , S.C = O(n) 
+//solving by hashmap
+
+class Solution {
+    public int[] twoSum(int[] arr, int target) {
+        int ans[] = new int[2];
+        int n = arr.length;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<n;i++){
+            map.put(arr[i],i);
+        }
+        for(int i=0;i<n;i++){
+             if(map.containsKey(target-arr[i]) && map.get(target-arr[i])>i){
+                     ans[0]=i;
+                     ans[1]=map.get(target-arr[i]);
+             }
+        }
+        return ans; 
+    }
+}
