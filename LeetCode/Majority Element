@@ -1,0 +1,8 @@
+The time complexity of this approach is O(n log n) since sorting an array of size n takes O(n log n) time.
+class Solution {
+    public int majorityElement(int[] nums) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        return nums[n/2];
+    }
+}
