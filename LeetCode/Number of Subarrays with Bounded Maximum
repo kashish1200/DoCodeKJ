@@ -1,0 +1,24 @@
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+
+Code
+class Solution {
+    public int numSubarrayBoundedMax(int[] nums, int left, int right) {
+        int start =-1, end =-1, count =0;
+        for(int i =0;i<nums.length;i++){
+
+            //if element is greater then right
+            if(nums[i]>right)
+                start = end = i;
+
+            //if element is in range
+            if(left<=nums[i])
+                end =i;
+
+            //updating count
+            count += end - start;
+        }
+        return count;
+    }
+}
