@@ -1,0 +1,45 @@
+Approach
+Iterating through all of the possible combinations and returning the max area.But it will TLE
+
+Complexity
+Time complexity: O(n^2)
+Space complexity: O(1)
+
+Code
+class Solution {
+    public int maxArea(int[] height) {
+        int n = height.length;
+        int maxArea = 0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int minHeight = Math.min(height[i], height[j]);
+                maxArea = Math.max((minHeight * (j-i)), maxArea);
+            }
+        }
+        return maxArea;
+    }
+}
+--------------------------------------------------------
+Approach 2
+Solving it by Two pointer approach, we create two pointers left and right, on either side of the array, and calculate the area between them. Now, for updating the pointers, we will update that pointer which will have a shorter height. left++ for the left pointer and right-- for the right pointer. Finally, we will return the max area
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+
+Code
+class Solution {
+    public int maxArea(int[] height) {
+        int n = height.length;
+        int maxArea = 0;
+        int left =0;
+        int right = n-1;
+        for(int i=0;i<n;i++){
+            int minHeight = Math.min(height[left], height[right]);
+            maxArea = Math.max(minHeight * (right-left), maxArea);
+            if(height[left] > height[right]) right--;
+            else left ++;
+        }
+        return maxArea;
+    }
+}
