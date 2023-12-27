@@ -1,0 +1,56 @@
+Approach
+By Hashmap
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(n)
+
+Code
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        int ans[] = new int[2];
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i =0;i<nums.length;i++){
+            map.put(nums[i], map.getOrDefault(nums[i],0)+1);
+        }
+        int i=0;
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            if(entry.getValue()==1){
+               ans[i++]=entry.getKey();
+            }
+        }
+        return ans; 
+    }
+}
+---------------------------------------------------------------
+Approach
+By XOR (Bit manipulation)
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+
+Code
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        int ans[] = new int[2];
+        int xorAll =0;
+        int rightmostSetBit=0;
+        for(int i=0;i<nums.length;i++){
+            xorAll^=nums[i];
+        }
+        rightmostSetBit = xorAll & ~(xorAll-1);
+        int x=0,y=0;
+         for(int i=0;i<nums.length;i++){
+            if((nums[i] & rightmostSetBit)>0){
+                x^=nums[i];
+            }
+            else{
+                y^=nums[i];
+            }  
+         }
+         ans[0]=x;
+         ans[1]=y;
+         return ans; 
+    }
+}
