@@ -1,0 +1,27 @@
+Complexity
+Time complexity: O(m*n)
+where m is the row size and n is the column size
+
+Space complexity: O(n)
+
+Code
+class Solution {
+    public int leastBricks(List<List<Integer>> wall) {
+        //gaps + cross = wall.size()
+        int cross = 0, gaps =0;
+        //hashmap to store the frequency of gaps
+        HashMap<Integer,Integer> map = new HashMap<>(); 
+        for(int i=0;i<wall.size();i++) {
+            int sum = 0;
+            // wall.get(i).size() - 1 , because we have to eleminate the edges
+            for (int j = 0; j < wall.get(i).size() - 1; j++) {
+                sum += wall.get(i).get(j);
+                map.put(sum, map.getOrDefault(sum, 0) + 1);
+                //getting the max gaps
+                gaps = Math.max(gaps, map.get(sum));
+
+            }
+        }
+        return wall.size()-gaps; 
+    }
+}
