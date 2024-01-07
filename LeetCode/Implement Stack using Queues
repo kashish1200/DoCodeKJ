@@ -1,0 +1,41 @@
+Complexity
+Time complexity:
+Push: O(n)
+Pop: O(1)
+Peek: O(1)
+Empty: O(1)
+Space complexity: O(n)
+
+Code
+class MyStack {
+
+    Queue<Integer> q1 = new LinkedList<>();
+    Queue<Integer> q2 = new LinkedList<>();
+
+    // first remove elements from q1 and add it to q2 untill q1 becomes empty
+    // then add new element x to the q1 
+    //again remove elements from q2 and add it to q1 untill q2 becomes empty
+
+    public void push(int x) {
+        while(!q1.isEmpty()){
+            q2.offer(q1.poll());
+        }
+        q1.offer(x);
+        while(!q2.isEmpty()){
+            q1.offer(q2.poll());
+        }
+    }
+    
+    public int pop() {
+        return q1.poll();   
+    }
+    
+    public int top() {
+        return q1.element();
+    }
+    
+    public boolean empty() {
+        return q1.isEmpty();
+        
+    }
+}
