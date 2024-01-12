@@ -1,0 +1,41 @@
+Complexity
+Time complexity: O(n)
+
+Code
+class Solution {
+    public String addStrings(String num1, String num2) {
+        int n1 =num1.length()-1, n2=num2.length()-1;
+        int digit1, digit2;
+        int carry = 0;
+        StringBuilder sb = new StringBuilder();
+
+        //loop will continue until both n1 and n2 are less than 0
+        //also taking care of any remaining carry
+        while(n1>=0 || n2>=0 || carry>0){
+
+            //if n1 is remaining, then only get its element
+            //getting n1 by converting char into int using ASCII
+            digit1 = (n1>=0) ? num1.charAt(n1)-'0' : 0 ;
+
+            //same
+            digit2 = (n2>=0) ? num2.charAt(n2) -'0' : 0 ;
+
+            //getting last digit
+            int lastDigit = (digit1+ digit2 + carry) % 10;
+
+            sb.append(lastDigit);
+
+            //getting carry
+            carry = (digit1 + digit2 + carry) / 10;
+
+            if(n1>=0) n1--;
+            if(n2>=0) n2--;
+        }
+
+        //reversing it, because we are tracking in reverse order
+        sb.reverse();
+        
+        //converting StringBuilder to string
+        return sb.toString();
+    }
+}
