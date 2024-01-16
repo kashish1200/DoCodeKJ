@@ -1,0 +1,57 @@
+implementing a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+MinStack() initializes the stack object.
+void push(int val) pushes the element val onto the stack.
+void pop() removes the element on the top of the stack.
+int top() gets the top element of the stack.
+int getMin() retrieves the minimum element in the stack.
+
+
+TC - O(1) and SC- O(1)
+
+
+class MinStack {
+    long minEle =Long.MAX_VALUE;
+    Stack<Long> st = new Stack<>();
+
+    public void push(int val) {
+        if(st.isEmpty()){
+            st.push((long)val);
+            minEle = val;
+        }
+        else if(val>=minEle){
+            st.push((long)val);
+        }
+        else{
+            st.push((long)2*val-minEle);
+            minEle = val;
+        }
+        
+    }
+    
+    public void pop() {
+        if(!st.isEmpty() && st.peek()<minEle){
+           // int popped = minEle;
+            minEle = 2*minEle - st.peek();
+           // return popped;
+        }
+        st.pop();
+        
+    }
+    
+    public int top() {
+        if(st.peek()<minEle){
+            return (int)minEle;
+        }
+        
+        return st.peek().intValue(); 
+    }
+    
+    public int getMin() {
+        if(st.isEmpty()){
+            return -1;
+        }
+        return (int)minEle;
+        
+    }
+}
