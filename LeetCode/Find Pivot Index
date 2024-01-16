@@ -1,0 +1,24 @@
+public int pivotIndex(int[] nums) {
+    int n = nums.length;
+    int left = 0;
+    int right = n - 1;
+    int leftSum = 0;
+    int rightSum = 0;
+    int pivot =-1;
+
+    while (left < right) {
+        if (leftSum < rightSum) {
+            leftSum += nums[left];
+            left++;
+        } 
+        else {
+            rightSum += nums[right];
+            right--;
+        }
+        if (leftSum == rightSum ) {
+            pivot = left;    
+        }   
+    }
+    return pivot;
+  }
+}
