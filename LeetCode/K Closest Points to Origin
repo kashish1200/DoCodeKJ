@@ -1,0 +1,37 @@
+TC - O(K log n)
+
+class Solution {
+    public class PQ implements Comparable<PQ>{
+        int x;
+        int y;
+        double distance;
+        
+        public PQ(int x, int y,double distance){
+            this.x = x;
+            this.y = y;
+            this.distance = distance;
+        }
+        @Override
+        public int compareTo(PQ p1){
+            return Double.compare(this.distance, p1.distance);
+        }
+
+    }
+    public int[][] kClosest(int[][] points, int k) {
+        PriorityQueue <PQ> minHeap = new PriorityQueue<>();
+        int n = points.length;
+        int ans[][] = new int[k][];
+        for(int i =0;i<n;i++){
+            double distance = points[i][0] * points[i][0] + points[i][1] * points[i][1];
+            minHeap.offer(new PQ (points[i][0],points[i][1], distance));
+        }
+
+        for(int i =0;i<k;i++){
+            PQ pq = minHeap.poll();
+            ans[i] = new int[]{pq.x, pq.y};
+
+        }
+        return ans;
+        
+    }
+}
