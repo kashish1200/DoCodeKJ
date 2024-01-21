@@ -1,0 +1,37 @@
+Complexity
+Time complexity: O(n log n)
+Space complexity: O(n)
+Code
+class Solution {
+    class Frequency implements Comparable<Frequency>{
+        int element;
+        int freq;
+        public Frequency(int element, int freq){
+            this.element = element;
+            this.freq = freq;
+        }
+
+        @Override
+        public int compareTo(Frequency f1){
+            //sorting in desc order
+            return Integer.compare(this.freq,f1.freq);
+        }
+    }
+    public int[] topKFrequent(int[] arr, int k) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        PriorityQueue <Frequency> maxHeap  = new PriorityQueue<>(Collections.reverseOrder());
+        int n = arr.length;
+        int ans[] = new int[k];
+        for(int i=0;i<n;i++){
+            map.put(arr[i], map.getOrDefault(arr[i],0)+1);
+        }
+        for(int key: map.keySet()){
+            maxHeap.offer(new Frequency(key, map.get(key)));
+        }
+        for(int i =0;i<k;i++){
+            Frequency freq = maxHeap.remove();
+            ans[i] = freq.element;
+        }
+        return ans;
+    }
+}
