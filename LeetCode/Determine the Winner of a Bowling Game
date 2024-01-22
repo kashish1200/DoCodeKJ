@@ -1,0 +1,49 @@
+class Solution {
+    public int isWinner(int[] player1, int[] player2) {
+        int n1 = player1.length;
+        int n2 = player2.length;
+        int score1 = player1[0];
+        int score2 = player2[0];
+        int ans =0;
+
+        if(player1[0]==10 && n1>1){
+            score1 += player1[1]*2;
+        }
+        else if(player1[0]!=10 && n1>1){
+            score1 += player1[1];
+        }
+        if(player2[0]==10 && n2>1){
+            score2 += player2[1]*2;
+        }
+        else if(player2[0]!=10 && n2>1){
+            score2 += player2[1];
+        }
+
+        for(int i=2;i<n1;i++){
+            if(player1[i-2]==10 || player1[i-1]==10){
+                score1 += player1[i]*2;
+            }
+            else{
+                score1 += player1[i];
+            }
+        }
+        for(int i=2;i<n2;i++){
+            if(player2[i-2]==10 || player2[i-1]==10){
+                score2 += player2[i]*2;
+            }
+            else{
+                score2 += player2[i];
+            }
+        }
+        if(score1<score2){
+            ans = 2;
+        }
+        else if(score1 == score2){
+            ans =0;
+        }
+        else{
+            ans =1;
+        }
+        return ans;
+    }
+}
