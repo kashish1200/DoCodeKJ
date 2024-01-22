@@ -1,0 +1,28 @@
+Approach
+trim() method = removes any leading or trailing whitespace from the string.
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+
+Code
+class Solution {
+    public int lengthOfLastWord(String s) {
+        int wordStart =0;
+        int count =0;
+        s = s.trim();
+        for(int i=s.length()-1;i>=0;i--){
+            if(s.charAt(i)==' '){
+                wordStart = i+1;
+                break;
+            }
+            else if (i == 0) {
+                wordStart = 0;
+            }  
+        }
+        for(int i=wordStart;i<s.length();i++){
+            count++;
+        }
+        return count;
+    }
+}
