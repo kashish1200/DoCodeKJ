@@ -1,0 +1,26 @@
+Complexity
+Time complexity: O(n)
+Space complexity: O(n)
+
+Code
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int n = nums.length;
+        int cumilativeSum = 0;
+        int rem = 0;
+        int ans =0;
+        map.put(0,1);
+        if(n==0) return 0;
+        for(int i=0;i<n;i++){
+            cumilativeSum += nums[i];
+            rem = cumilativeSum % k;
+            if(rem<0) rem += k;
+            if(map.containsKey(rem)){
+                ans += map.get(rem);
+            }
+            map.put(rem, map.getOrDefault(rem,0)+1);
+        }
+        return ans;
+    }
+}
