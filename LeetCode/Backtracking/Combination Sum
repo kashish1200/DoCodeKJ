@@ -1,0 +1,43 @@
+class Solution {
+    List<List<Integer>> result = new ArrayList<>();
+
+    public void backtrack(int idx, List<Integer> temp, int[] nums, int target) {
+        int n = nums.length;
+
+        // If the target becomes 0, add the current combination to the result
+        if (target == 0) {
+            result.add(new ArrayList<>(temp));
+            return;
+        }
+
+        // Iterate through the array starting from the given index
+        while (idx < n && target - nums[idx] >= 0) {
+            // Add the current element to the combination
+            temp.add(nums[idx]);
+
+            // Recursively call the function with the updated index and target
+            // This is to explore combinations that include the current element
+            backtrack(idx, temp, nums, target - nums[idx]);
+
+            // Move to the next index to explore other combinations
+            idx++;
+
+            // Remove the last added element to backtrack and add other element
+            temp.remove(temp.size() - 1);
+        }
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<Integer> temp = new ArrayList<>();
+        int idx = 0;
+
+        // Sort the candidates array to ensure that the combination is unique
+        Arrays.sort(candidates);
+
+        // Start the backtracking process
+        backtrack(idx, temp, candidates, target);
+
+        // Return the final result
+        return result;
+    }
+}
