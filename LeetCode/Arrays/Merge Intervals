@@ -1,0 +1,33 @@
+Complexity
+Time complexity: O(nlogn)
+Space complexity: O(n)
+
+Code
+class Solution {
+    public int[][] merge(int[][] Intervals) {
+        Arrays.sort(Intervals, Comparator.comparingInt(a -> a[0]));
+        int n = Intervals.length;
+        List<int[]> merged = new ArrayList<>();
+
+        //taking 0th index element as our first range
+        int first = Intervals[0][0];
+        int second = Intervals[0][1];
+
+        //comparing from the 1st indexed element with the 0th
+        for (int i = 1; i < n; i++) {
+            int currfirst = Intervals[i][0];
+            int currsecond = Intervals[i][1];
+            if(currfirst <= second){
+                second = Math.max(currsecond, second);
+            }
+            else{
+                merged.add(new int[]{first, second});
+                first = currfirst;
+                second = currsecond;
+            }
+        }
+        merged.add(new int[]{first, second});
+        return merged.toArray(new int[merged.size()][]);
+        
+    }
+}
