@@ -1,0 +1,19 @@
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+
+Code
+class Solution {
+    public int reverse(int x) {
+        long newX =0;
+        while(x!=0){
+            int lastDigit = x % 10;
+            newX = newX * 10 + lastDigit;
+            x = x / 10;
+        }
+        if(newX >= Integer.MAX_VALUE || newX <= Integer.MIN_VALUE)
+            return 0;
+        
+        return (int)newX;
+    }
+}
