@@ -1,0 +1,34 @@
+Intuition
+For a 4-digit number, a pair of two-digit numbers is always smaller than a pair consisting of a 3-digit and 1-digit number and to make the two 2-digit numbers as small as possible, we can place the two smallest number in the tens place and put the larger ones in the ones place.
+
+Approach
+Convert number into array of digit (I used string for it)
+Sort the array
+This way, the first two elements of the array are the two minimum digits, and the last two are larger digits.
+Simply multiply the smaller digit by 10 and add ones digit element
+Example - smallDigit = 2
+and we want to make it 29
+2*10 + 9 = 29
+
+
+Complexity
+Time complexity: O(n log n)
+Space complexity: O(n)
+
+
+Code
+class Solution {
+    public int minimumSum(int num) {
+        String s = Integer.toString(num);
+        int newNum[] = new int[s.length()];
+        for(int i=0;i<s.length();i++){
+            newNum[i] = s.charAt(i)-'0';
+        }
+        int n = newNum.length;
+        Arrays.sort(newNum);
+        int small = newNum[0];
+        int secondSmall = newNum[1];
+        int ans = (small*10 + newNum[2]) + (secondSmall*10 + newNum[3]);
+        return ans; 
+    }
+}
