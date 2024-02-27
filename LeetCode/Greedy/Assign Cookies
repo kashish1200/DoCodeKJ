@@ -1,0 +1,27 @@
+Approach
+Sort both arrays
+Use two pointers (i and j) to iterate over both arrays.
+We increment i (child) when a match is found and increment j (cookie) in each iteration.
+The loop continues until we reach the end of either array.
+  
+Complexity
+Time complexity: O(n log n) + O(m log m)
+Space complexity: O(1)
+  
+Code
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        int j=0, i=0;
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int count =0;
+        while(i<g.length && j<s.length){
+            if(s[j] >= g[i]){
+                count++;
+                i++;
+            }
+            j++;
+        }
+        return count;
+    }
+}
