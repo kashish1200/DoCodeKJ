@@ -5,7 +5,7 @@ Space complexity: O(n)
 Code
 class Solution {
     public int[][] merge(int[][] Intervals) {
-        Arrays.sort(Intervals, Comparator.comparingInt(a -> a[0]));
+        Arrays.sort(Intervals, (a,b) -> Integer.compare(a[0], b[0]));
         int n = Intervals.length;
         List<int[]> merged = new ArrayList<>();
 
