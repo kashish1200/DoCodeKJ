@@ -1,0 +1,38 @@
+Approach
+For a string to be pallindromic you need equal characters to be present on both left and right side, hence you need to use some data structure that maintains a count of character. Hence HashMap strucked in my mind.
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(n)
+Code
+class Solution {
+    public int longestPalindrome(String s) {
+        int count =0;
+        int countOdd=0;
+
+        // Create a hashmap to store character frequencies
+        HashMap<Character, Integer> map = new HashMap<>();
+        for(int i=0; i<s.length(); i++){
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i),0)+1);
+        }
+
+        // Count frequencies of characters
+        for(Map.Entry<Character, Integer> entry : map.entrySet()){
+           // If the frequency is even, add the entire frequency to the count
+            if(entry.getValue()%2==0){
+                count = count + entry.getValue();
+            }
+            // If the frequency is odd, add (frequency - 1) to the count and mark it as an odd frequency
+            else{
+                count += entry.getValue()-1;
+                countOdd++;
+            }
+        }
+
+         // If there are characters with odd frequencies, add one to the count to represent the middle character of the palindrome
+        if(countOdd > 0){
+            count++;
+        }
+        return count;
+    }
+}
