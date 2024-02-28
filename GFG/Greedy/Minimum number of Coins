@@ -1,0 +1,18 @@
+class Solution{
+    static List<Integer> minPartition(int N)
+    {
+        List<Integer> ans = new ArrayList<>();
+        int money[] = {2000, 500,200,100,50,20,10,5,2,1};
+        int i=0;
+        while(N>0){
+            if(money[i] <= N){
+                ans.add(money[i]);
+                N-= money[i];
+            }
+            else{
+                i++;
+            }
+        }
+        return ans;
+    }
+}
