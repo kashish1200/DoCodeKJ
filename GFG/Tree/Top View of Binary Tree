@@ -1,0 +1,37 @@
+tc = sc = O(n logn)
+class Solution
+{
+    static class Pair{
+        Node node;
+        int hd;
+        Pair(Node node, int hd){
+            this.node = node;
+            this.hd = hd;
+        }
+    }
+    static ArrayList<Integer> topView(Node root){
+        Queue<Pair> que = new LinkedList<>();
+        TreeMap<Integer, Node> map = new TreeMap<>();
+        int hd =0;
+        ArrayList<Integer> ans = new ArrayList<>();
+        que.add(new Pair(root, hd));
+        while(!que.isEmpty()){
+            Pair curr = que.poll();
+            if(!map.containsKey(curr.hd)){
+                map.put(curr.hd, curr.node);
+            }
+            if(curr.node.left!=null){
+                que.add(new Pair(curr.node.left, curr.hd-1));
+            }
+            if(curr.node.right!=null){
+                que.add(new Pair(curr.node.right, curr.hd+1));
+            }
+        }
+        for(Map.Entry<Integer, Node> entry : map.entrySet()){
+            ans.add(entry.getValue().data);
+        }
+        return ans;
+        
+        
+    }
+}
