@@ -35,3 +35,22 @@ class Solution {
         return count;
     }
 }
+
+
+//Approach 3
+class Solution {
+    static int evenlyDivides(int n) {
+        int m =n;
+        int count=0;
+        while(m>0){
+            int lastdigit = m%10;
+            if(lastdigit>0){
+                if(n%lastdigit==0)
+                   count++;
+            }
+            m = m/10;
+        }
+        return count;
+        
+    }
+}
