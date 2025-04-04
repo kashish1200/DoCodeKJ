@@ -17,3 +17,21 @@ class Solution{
         return result;
     }
 }
+
+
+
+//Approach 2
+class Solution {
+    static int evenlyDivides(int n) {
+        int count =0;
+        String num = String.valueOf(n);
+        char[] c = num.toCharArray();
+        for(char ch: c){
+            int digit = ch - '0';
+            if(digit!=0 && n%digit==0){
+                count++;
+            }
+        }
+        return count;
+    }
+}
