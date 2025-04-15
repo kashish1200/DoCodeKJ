@@ -26,3 +26,21 @@ class Solution {
         return true; // The number is a palindrome if we passed all checks
     }
 }
+
+
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        int m =x;
+        int lastdigit=0;
+        while(m>0){
+            int y = m%10;
+            lastdigit = lastdigit*10 + y;
+            m=m/10;
+        }
+        if(lastdigit==x) return true;
+        return false;
+        
+        
+    }
+}
