@@ -1,0 +1,14 @@
+class Solution {
+    static boolean armstrongNumber(int n) {
+        int m=n;
+        double res=0;
+        while(m!=0){
+            int x = m%10;
+            res = res +  Math.pow(x,3);
+            m = m/10;
+        }
+        if(res==n) return true;
+        return false;
+        
+    }
+}
