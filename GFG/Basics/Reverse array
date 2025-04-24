@@ -1,0 +1,34 @@
+class Solution {
+    public void reverseArray(int arr[]) {
+        int low=0, hi=arr.length-1;
+        while(low<hi){
+            swap(arr, low, hi);
+            low++; hi--;
+        }
+    }
+    
+    public void swap(int arr[], int a, int b){
+        int c = arr[a];
+        arr[a] = arr[b];
+        arr[b] = c;
+    }
+}
+----
+
+class Solution {
+    public void reverseArray(int arr[]) {
+        int low=0, hi=arr.length-1;
+        reverseRec(arr, low, hi);
+    }
+    public void reverseRec(int arr[], int a, int b){
+        if(a>=b) return;
+        swap(arr,a,b);
+        reverseRec(arr, a+1, b-1);
+    }
+    
+    public void swap(int arr[], int a, int b){
+        int c = arr[a];
+        arr[a] = arr[b];
+        arr[b] = c;
+    }
+}
