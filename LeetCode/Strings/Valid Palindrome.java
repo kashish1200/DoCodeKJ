@@ -53,3 +53,67 @@ class Solution {
     return true;
 }
 }
+
+
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        s = s.toLowerCase();
+        StringBuilder sb = new StringBuilder();
+        for(char c : s.toCharArray()){
+            if(Character.isLetterOrDigit(c)){
+                sb.append(c);
+            }
+            else c++;
+        }
+        
+ 
+        if(isPalindromeInternal(sb.toString())){
+            return true;
+        }
+        else return false;
+    }
+
+
+    public boolean isPalindromeInternal(String s){
+        int low = 0, hi = s.length()-1;
+        while(low<hi){
+            if(s.charAt(low)== s.charAt(hi)){
+                low++; hi--;
+            }
+            else return false;
+        }
+        return true;
+    }
+}
+----
+//Recursion
+class Solution {
+    public boolean isPalindrome(String s) {
+        s = s.toLowerCase();
+        StringBuilder sb = new StringBuilder();
+        for(char c : s.toCharArray()){
+            if(Character.isLetterOrDigit(c)){
+                sb.append(c);
+            }
+            else c++;
+        }
+        int low= 0, hi = sb.length()-1;
+ 
+        if(isPalindromeInternal(sb.toString(), low, hi)){
+            return true;
+        }
+        else return false;
+    }
+
+
+    public boolean isPalindromeInternal(String s, int low, int hi){
+        if(low>=hi) return true;
+        if(s.charAt(low)!= s.charAt(hi)){
+            return false;
+        }
+        return isPalindromeInternal(s, low+1, hi-1);
+
+        
+    }
+}
