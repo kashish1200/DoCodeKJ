@@ -6,7 +6,7 @@ class Solution {
         ArrayList<Integer> ans = new ArrayList<>();
         
         for(int i=n-1;i>=0;i--){
-            while(!st.isEmpty() && st.peek() >= arr[i]){
+            while(!st.isEmpty() &&  arr[i] <= st.peek()){
                 st.pop();
             }
             
