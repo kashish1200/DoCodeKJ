@@ -8,7 +8,7 @@ class Solution {
         while (arr[end] < k) {
             start = end;
             end = end * 2;
-        }
+        }//yaha hume start and end ki range mil jayegi, fir normal BS laga denge
 
         // Binary search, jaise hi range m aa jaye toh normal binary search
         while (start <= end) {
